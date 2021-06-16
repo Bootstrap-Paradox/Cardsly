@@ -70,7 +70,7 @@ class Card(models.Model):
         return self.__build_url(host)
 
     def __build_url(self, host):
-        return f"{host}/cards/{str(self.uid)}"
+        return f"/cards/{str(self.uid)}"
 
 
     def get_card_from_uid(self, uid:str) -> tuple:
