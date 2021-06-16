@@ -1,6 +1,13 @@
 import random
 
+
+
 from ..models import Card
+
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 class LayoutGenerator:
     birthday_message = [
@@ -46,7 +53,7 @@ class LayoutGenerator:
         return message
 
     def fetch_svg(self, image_name):
-        full_path = f"/Users/sid/Documents/Web Design/dJango/beautiful-cards/beautifulCards/cards/static/cards/assest/{image_name}.svg"
+        full_path = f"{BASE_DIR}/staticfiles/cards/assest/{image_name}.svg"
         with open(full_path, "r") as f:
             svg_image = f.read()
 
