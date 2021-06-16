@@ -78,7 +78,8 @@ def create_card(response:dict) -> render:
                 custom_message=custom_message,
                 senderName=senderName,
                 recieverName=receiverName,
-                image_name=cardType
+                image_name=cardType,
+                host=response.META['HTTP_HOST']
             )
             print(card_url)
             return redirect(card_url)

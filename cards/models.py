@@ -56,7 +56,7 @@ class Card(models.Model):
     created_on = models.DateField(default=datetime.now)
     expires_on = models.DateField(null=True)
 
-    def create_card(self, max_days=2, message="", custom_message="", senderName="", recieverName="", image_name="get_well_soon"):
+    def create_card(self, max_days=2, message="", custom_message="", senderName="", recieverName="", image_name="get_well_soon", host=""):
         self.expires_on = datetime.now() + timedelta(days=max_days) if max_days < 30 else datetime.now() + timedelta(days=4)
         self.message = message
         self.custom_message = custom_message
@@ -65,10 +65,12 @@ class Card(models.Model):
         self.image_name = image_name
 
         self.save()
-        return self.__build_url()
 
-    def __build_url(self):
-        return f"http://127.0.0.1:8000/cards/{str(self.uid)}"
+
+        return self.__build_url(host)
+
+    def __build_url(self, host):
+        return f"{host}/cards/{str(self.uid)}"
 
 
     def get_card_from_uid(self, uid:str) -> tuple:
