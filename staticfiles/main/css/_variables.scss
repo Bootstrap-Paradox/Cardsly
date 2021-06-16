@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+$like-distance: 15px;
+
+$content-margin: 25px;
+
+$radius: 15px;
+
+$shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+
+$colors: (
+    grey: rgba(0, 0, 0, 0.25),
+    light:rgba(0, 0, 0, 0.05)
+);
+
+// Font Management
+
+$font-sizes: (
+    h1: 3.2rem,
+    h2: 2.4rem,
+    h3: 1.87rem,
+    h4: 1.6rem,
+    h5: 1.32rem,
+    h6: 1.2rem,
+    p: 1.6rem
+);
+
+@function getFontSize($size){
+    @return map-get($font-sizes, $size);
+}
+
+// ===
+
+@function getColor($color){
+    @return map-get($colors, $color);
+}
+
+
+@function text-color($opacity){
+    @return rgba(0, 0, 0, $opacity);
+}
+
+
+$fontFamily: (
+    cursive: 'Courgette',
+    normal: 'Helvetica Neue',
+    poppins: 'Poppins'
+);
+
+@mixin center-content{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin form-fields{
+    width: 238px;
+    font-weight: 600;
+    margin: $content-margin auto auto auto;
+    border-radius: $radius - 9px;
+    border: 0.2px solid getColor(grey);
+    padding-left: $content-margin - 5px;
+}
+
+@function getFont($font){
+    @return map-get($fontFamily, $font);
+}
+
+
+$desktop: 843px;
+
+@mixin desktop {
+    @media (min-width: $desktop){
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $desktop){
+        @content;
+    }
+}
+
+// Responsive template for displaying content on Home
+@mixin display-template($reverse-desktop: false, $svg:false){
+    min-height: 80vh;
+    text-align: center;
+    display: grid;
+    grid-template-areas:
+    'text'
+    'img';
+
+    #text{
+        grid-area: text;
+        text-align: center;
+    }
+
+    #image{
+        grid-area: img;
+    }
+
+    @include mobile {
+        // Allows the svg to stay at the bottom when the Screen is small
+
+        @if $svg{
+            svg{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100vw;
+            }
+        }
+    }
+
+    @include desktop{
+        $area-1: text;
+        $area-2: img;
+        @if $reverse-desktop{
+            $area-1: img;
+            $area-2: text;
+        }
+        grid-template-columns: 1fr 1.4fr;
+        grid-template-areas: '#{$area-1} #{$area-2}';
+        align-items: center;
+
+        #text{
+            grid-area: text;
+        }
+        #image{
+            grid-area: img;
+            width: 100%;
+            justify-self: center;
+        }
+    }
+
+
+}

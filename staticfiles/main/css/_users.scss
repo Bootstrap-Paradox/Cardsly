@@ -1,0 +1,51 @@
+@import 'variables';
+
+.custom-form{
+    padding-top: $content-margin;
+    margin: $content-margin auto;
+    text-align: center;
+
+    h1{
+        font-size: 4rem;
+        font-weight: bold;
+        // font-family: getFont(cursive);
+        margin-bottom: $content-margin + 40px;
+    }
+    
+    input[type=text], input[type=password], input[type=email], textarea, select{
+        @include form-fields;
+        
+    }
+    input[type=text], input[type=password], input[type=email]{
+        height: 40px;
+    }
+
+    input[type=submit], input[type=button]{
+        @include form-fields;
+        height: 40px;
+        border: none;
+        padding: 0;
+        margin: $content-margin + 40px auto;
+    }
+
+    input[type=checkbox]{
+        // margin-top: 100px;
+        // margin: 0 auto;
+        width: 20px;
+        height: 20px;
+        // margin: $content-margin auto;
+    }
+
+    ul{
+        list-style: none;
+        color: #FF7373;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        li{
+            margin: 0;
+            padding: 0;
+        }
+    }
+    
+}
