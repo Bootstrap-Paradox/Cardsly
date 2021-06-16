@@ -23,9 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a+3j1$alv#uxu--o0ey(-v=^%f8r4!9i989w9b6_zc=stx#&s*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['beautiful-cards.herokuapp.com']
+ALLOWED_HOSTS = [
+    'beautiful-cards.herokuapp.com',
+    '127.0.0.1'
+]
 
 # csrf Secure
 CSRF_COOKIE_SECURE=True
