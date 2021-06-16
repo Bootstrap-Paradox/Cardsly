@@ -27,6 +27,8 @@
     
     <script>
 
+        var domain = window.location
+
         const manageClass = (activated) => {
             let heart = document.getElementById("btn-heart").childNodes[0]
 
@@ -47,13 +49,13 @@
 
         async function heart_action(element, heart_activated, uid) {
             console.log(uid)
-            let url = `http://127.0.0.1:8000/cards/api/${uid}+update`
+            let url = `${domain.origin}/cards/api/${uid}+update`
             let data = await toggle_heart(url)
             console.log(data)
             manageClass(data["heart_activated"])
             
         }
-        const url = `http://127.0.0.1:8000/cards/api/{{uid}}+fetch`
+        const url = `${domain.origin}/cards/api/{{uid}}+fetch`
 
         toggle_heart(url).then(response => {manageClass(response["heart_activated"])})
 
