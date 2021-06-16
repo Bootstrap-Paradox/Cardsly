@@ -1,2 +1,2 @@
-web: gunicorn beautifulCards.wsgi.py
+web: gunicorn beautifulCards.wsgi
 
