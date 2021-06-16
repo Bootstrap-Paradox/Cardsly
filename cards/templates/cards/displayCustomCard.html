@@ -1,0 +1,80 @@
+{% extends 'main/base.html' %}
+
+{% block main %}
+    {% load static %}
+    
+    <div class="display-card">
+        <section class="">
+            {% if message != "" %}
+            <h1>Hey {% if receiverName != "" %} {{receiverName}} {% else %} Everybody {% endif %}!</h1>
+            <p data-scroll-speed="2">{{ message }}</p>
+            {% endif %}
+            <div>
+                {{ svg_image | safe }}
+            </div>
+        </section>
+        <section class="">
+            {% if custom_message != "" and custom_message != None %}
+                <h2>{% if senderName != "" %}{{senderName}}{% else %}Sender{% endif %}'s Message</h2>
+                <p>{{ custom_message }}</p>
+            {% endif %}
+        </section>
+    </div>
+    <button onclick="heart_action(this, '{{heart_activated}}', '{{uid}}')" class="heart-button" id="btn-heart"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+      </svg></button>
+
+    
+    <script>
+
+        const manageClass = (activated) => {
+            let heart = document.getElementById("btn-heart").childNodes[0]
+
+            console.log(activated)
+            if (activated){
+                heart.classList.add("animate__animated", "animate__heartBeat", "animate__infinite")
+                
+            }else{
+                heart.classList.remove("animate__animated", "animate__heartBeat", "animate__infinite")
+
+            }
+        }
+
+        async function toggle_heart(url){
+            let response = await fetch(url)
+            return response.json()
+        }
+
+        async function heart_action(element, heart_activated, uid) {
+            console.log(uid)
+            let url = `http://127.0.0.1:8000/cards/api/${uid}+update`
+            let data = await toggle_heart(url)
+            console.log(data)
+            manageClass(data["heart_activated"])
+            
+        }
+        const url = `http://127.0.0.1:8000/cards/api/{{uid}}+fetch`
+
+        toggle_heart(url).then(response => {manageClass(response["heart_activated"])})
+
+
+        // var btn_heart = document.getElementById("btn-like").childNodes
+        // console.log("{{heart_activated}}".toLowerCase())
+        // if ("{{heart_activated}}".toLowerCase() === "true"){
+        //     console.log("add")
+
+        //     btn_heart[0].classList.add("animate__animated")
+        //     btn_heart[0].classList.add("animate__heartBeat")
+        //     btn_heart[0].classList.add("animate__infinite")
+        //     // btn_heart.addClass("animate__animated animate__heartBeat animate__infinite")
+        // }
+        // else{
+        //     console.log("remove")
+        //     btn_heart[0].classList.remove("animate__animated")
+        //     btn_heart[0].classList.remove("animate__heartBeat")
+        //     btn_heart[0].classList.remove("animate__infinite")
+        // }
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,54 @@
+.btn-custom{
+    padding-left: 4rem;
+    padding-right: 4rem;
+    margin: 4rem 0;
+    width: 200px;
+}
+
+.btn-like{
+    position: fixed;
+    bottom: $like-distance;
+    right: $like-distance;
+    border-radius: 50%;
+    width: 76px;
+    height: 76px;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+
+    svg{
+        width: 30px;
+        height: 30px;
+        margin-top: 6px;
+        color: #FF3232;
+    }
+}
+
+.heart-button{
+    $dimension: 76px;
+    $distance: 15px;
+
+    position: fixed;
+    bottom: $distance;
+    right: $distance;
+    border-radius: 50%;
+    width: $dimension;
+    height: $dimension;
+    background-color: #fff;
+    border: none;
+    box-shadow: $shadow;
+
+    svg{
+        $dimension-svg: 30px;
+        width: $dimension-svg;
+        height: $dimension-svg;
+        margin-top: 6px;
+        color: #FF3232;
+
+    }
+
+    @include desktop{
+        right: 20%;
+        transform: translateX(-20%);
+    }
+}

@@ -1,0 +1,45 @@
+
+@import 'variables';
+
+
+.menu-page{
+    text-align: center;
+
+    a{
+        text-decoration:none;
+    }
+
+    h1{
+        margin: $content-margin;
+        font-size: 3rem;
+        color: text-color(0.25);
+        font-family: getFont(cursive);
+    }
+
+    .custom-card{
+        height: 200px;
+        width: auto;
+        background-color: white;
+        box-shadow: $shadow;
+        max-width: 400px;
+        margin: $content-margin;
+        position: relative;
+        color: #000;
+        border-radius: $radius;
+
+        
+        svg{
+            width: auto;
+            @include center-content;
+            opacity: 0.15;
+            height:80%;
+        }
+
+        h3{
+            @include center-content;
+            font-family: getFont(cursive);
+            color: text-color(0.75);
+        }
+    }
+}
+
