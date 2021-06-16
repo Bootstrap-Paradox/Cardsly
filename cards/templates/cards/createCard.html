@@ -5,7 +5,7 @@
 {% block main %}
     <h1>Create Card</h1>
 
-    <form class="custom-form" method="POST" action="">
+    <form class="custom-form" method="post" action="">
         {% csrf_token %}
 
         {{ form | crispy }}
