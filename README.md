@@ -10,14 +10,3 @@ Send Virtual Interactive Cards to Friends and Family on Special Occasions to mak
 * Generates Link
 * Share the Link
 * Link stays Active for 2 days
-
-
-## Features to be Developed
-
-* Live Heart Beat Update
-* Background Database Sweep
-
-## Future Features
-
-* User Management
-* Api
